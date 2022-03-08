@@ -1,0 +1,23 @@
+
+from collections import Counter
+class Solution:
+    def commonChars(self, words: List[str]) -> List[str]:
+        
+        ans=[]
+        
+        words.sort(key=lambda x:len(x))
+        
+        d_shortest=Counter(words[0])
+        
+        for word in words[1:]:
+            for key in d_shortest:
+                d_shortest[key]=min(d_shortest[key],word.count(key))
+                
+        
+        for key in d_shortest:
+            if d_shortest[key]>=1:
+                for _ in range(d_shortest[key]):
+                    ans.append(key)
+                    
+        return ans
+                    
