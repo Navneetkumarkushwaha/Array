@@ -1,0 +1,24 @@
+def isAlienSorted(self, words: List[str], order: str) -> bool:
+        """
+        The idea is to store up indices of the order in which the elements occur in a hashmap.
+        Then create a list of indices for each char in our list of words. Now all we have to do is 
+		compare each consecutive element. If the next element (word) is lexicographically smaller,
+		then we return False.
+        """
+        lookup = dict()
+        indices_list = []
+        
+        for i, char in enumerate(order):
+            lookup[char] = i
+            
+        for word in words:
+            indices = []
+            for char in word:
+                indices.append(lookup[char])
+            indices_list.append(indices)
+            
+        for i in range(len(indices_list) - 1):
+            if indices_list[i] > indices_list[i + 1]:
+                return False
+            
+        return True
