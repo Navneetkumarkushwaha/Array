@@ -1,0 +1,32 @@
+In this question:- 
+1.if sum of arr is not divisible of 3 it means we can't divide arr into three parts then return False.
+2.now if sum of arr is divisible of 3 then it means every parts' value is sum(arr)//3.
+3.Find all three parts in given arr having value sum(arr)//3.
+4.if found return True
+5.else return False
+
+
+class Solution:
+    def canThreePartsEqualSum(self, arr: List[int]) -> bool:
+        
+        sum_arr=sum(arr)
+        
+        if sum_arr%3:
+            return False
+        
+        part_sum=sum_arr//3
+        current_sum=parts=0
+        
+        for num in arr:
+            current_sum+=num
+            if current_sum==part_sum:
+                if parts==2:
+                    return True
+                else:
+                    parts+=1
+                    current_sum=0
+                    
+        return False
+            
+        
+        
