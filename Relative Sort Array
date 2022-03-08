@@ -1,0 +1,18 @@
+from collections import Counter
+class Solution:
+    def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
+        dic=Counter(arr1)
+        
+        temp=[]
+        
+        for num in arr2:
+            val=dic[num]
+            for _ in range(val):
+                temp.append(num)
+                arr1.remove(num)
+                
+        arr1.sort()
+        temp=temp+arr1
+        
+        return temp
+        
